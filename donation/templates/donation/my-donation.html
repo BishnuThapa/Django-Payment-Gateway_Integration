@@ -17,8 +17,25 @@
 <br>
 <p>Feel free to send a donation.. </p>
 <hr>
+<div id="paypal-button-container"></div>
 <br>
 
 </div>
+<script src="https://www.paypal.com/sdk/js?client-id=AeBpVB9eUTmVBoorNavokVjvwv5se9xX-c4a0IIM1j-Zu9nN2_Q18LCQcXcj8HNGdLJ0gChCR-gdjA-r&components=buttons&enable-funding=paylater,venmo,card" data-sdk-integration-source="integrationbuilder_sc"></script>
+
+<script>
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      // This function sets up the details of the transaction, including the amount and line item details.
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: '100'
+          }
+        }]
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
 
 {% endblock content %}
